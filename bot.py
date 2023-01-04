@@ -17,38 +17,41 @@ joi = types.KeyboardButton("Joi")
 vineri = types.KeyboardButton("Vineri")
 
 # keyboards
-keyboard1 = types.ReplyKeyboardMarkup(row_width=3, resize_keyboard=True, one_time_keyboard=True).add(luni, marti, miercuri, joi, vineri)
+keyboard1 = types.ReplyKeyboardMarkup(row_width=3, resize_keyboard=True, one_time_keyboard=True)\
+    .add(luni, marti, miercuri, joi, vineri)
 
 
 # start message handling
 @dp.message_handler(commands=["start", "help"])
-async def welcomeText(message: types.Message):
+async def welcome_text(message: types.Message):
     await bot.send_photo(message.chat.id,
                          'https://i.pinimg.com/originals/c1/2d/af/c12daffa996683fe1080c809aca58e23.png')
 
     await bot.send_message(message.chat.id,
-                           "Salutare {0.first_name}!\n Ai nevoie de temele pentru acasă? Eu am toate temele pentru acasă de care ai nevoie. Scrie <b>/teme</b> pentru a afla temele".format(
+                           "Salutare {0.first_name}!\n"
+                           " Ai nevoie de temele pentru acasă? Eu am toate temele pentru acasă de care ai nevoie.\n\n"
+                           " Scrie <b>/teme</b> pentru a afla temele".format(
                                message.from_user), parse_mode='html')
 
 
 @dp.message_handler(commands=["teme"])
-async def popMenu(message: types.Message):
+async def pop_menu(message: types.Message):
     await message.reply("Temele pe ce zi dorii să aflați?", reply_markup=keyboard1)
 
 
 @dp.message_handler()
-async def answerToUser(message: types.Message):
+async def answer_to_user(message: types.Message):
 
     if message.text == "Luni":
-        await message.answer(excelRead.dfLuni)
+        await message.answer(excelRead.hwLuni)
     elif message.text == "Marti":
-        await message.answer(excelRead.dfMarti)
+        await message.answer(excelRead.hwMarti)
     elif message.text == "Miercuri":
-        await message.answer(excelRead.dfMiercuri)
+        await message.answer(excelRead.hwMiercuri)
     elif message.text == "Joi":
-        await message.answer(excelRead.dfJoi)
+        await message.answer(excelRead.hwJoi)
     elif message.text == "Vineri":
-        await message.answer(excelRead.dfVineri)
+        await message.answer(excelRead.hwVineri)
 
 
 # run long-polling
