@@ -11,7 +11,7 @@ dp = Dispatcher(bot)
 
 # buttons
 luni = types.KeyboardButton("Luni")
-marti = types.KeyboardButton("Marti")
+marti = types.KeyboardButton("Marți")
 miercuri = types.KeyboardButton("Miercuri")
 joi = types.KeyboardButton("Joi")
 vineri = types.KeyboardButton("Vineri")
@@ -19,6 +19,7 @@ vineri = types.KeyboardButton("Vineri")
 # keyboards
 keyboard1 = types.ReplyKeyboardMarkup(row_width=3, resize_keyboard=True, one_time_keyboard=True)\
     .add(luni, marti, miercuri, joi, vineri)
+keyboard2 = types.InlineKeyboardMarkup(row_width=3)
 
 
 # start message handling
@@ -43,15 +44,25 @@ async def pop_menu(message: types.Message):
 async def answer_to_user(message: types.Message):
 
     if message.text == "Luni":
-        await message.answer(excelRead.hwLuni)
-    elif message.text == "Marti":
-        await message.answer(excelRead.hwMarti)
+        await message.answer("Temele pentru ziua de luni.")
+        for i in range(len(excelRead.hwLuni)) :
+            await message.answer(str(excelRead.hwLuni[i][0]) + ": \n" + str(excelRead.hwLuni[i][1]), parse_mode="html")
+    elif message.text == "Marți":
+        await message.answer("Temele pentru ziua de marți.")
+        for i in range(len(excelRead.hwMarti)):
+            await message.answer(str(excelRead.hwMarti[i][0]) + ": \n" + str(excelRead.hwMarti[i][1]), parse_mode="html")
     elif message.text == "Miercuri":
-        await message.answer(excelRead.hwMiercuri)
+        await message.answer("Temele pentru ziua de miercuri.")
+        for i in range(len(excelRead.hwMiercuri)):
+            await message.answer(str(excelRead.hwMiercuri[i][0]) + ": \n" + str(excelRead.hwMiercuri[i][1]), parse_mode="html")
     elif message.text == "Joi":
-        await message.answer(excelRead.hwJoi)
+        await message.answer("Temele pentru ziua de joi.")
+        for i in range(len(excelRead.hwJoi)):
+            await message.answer(str(excelRead.hwJoi[i][0]) + ": \n" + str(excelRead.hwJoi[i][1]), parse_mode="html")
     elif message.text == "Vineri":
-        await message.answer(excelRead.hwVineri)
+        await message.answer("Temele pentru ziua de vineri.")
+        for i in range(len(excelRead.hwVineri)):
+            await message.answer(str(excelRead.hwVineri[i][0]) + ": \n" + str(excelRead.hwVineri[i][1]), parse_mode="html")
 
 
 # run long-polling
