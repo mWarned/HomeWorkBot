@@ -40,7 +40,7 @@ async def pop_menu(message: types.Message):
     await message.reply("Temele pe ce zi dorii să aflați?", reply_markup=keyboard1)
 
 
-@dp.message_handler()
+@dp.message_handler(commands=["next_day"])
 async def answer_to_user(message: types.Message):
 
     if message.text == "Luni":
