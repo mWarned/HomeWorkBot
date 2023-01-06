@@ -1,4 +1,3 @@
-import excelRead
 import logging
 from aiogram import Bot, Dispatcher, executor, types
 import datetime
@@ -47,6 +46,7 @@ async def pop_menu(message: types.Message):
 
 @dp.message_handler(commands=["next_day"])
 async def hw_next_day(message: types.Message):
+    import excelRead
     await message.answer("Temele pentru ziua urmatoare.")
 
     if dayIndex == 0:
@@ -71,6 +71,8 @@ async def hw_next_day(message: types.Message):
 
 @dp.message_handler()
 async def answer_to_user(message: types.Message):
+    import excelRead
+
     if message.text == "Luni":
         await message.answer("Temele pentru ziua de luni.")
         for i in range(len(excelRead.hwLuni)):

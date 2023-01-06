@@ -1,13 +1,19 @@
-from datetime import time
+import time
 import numpy as np
 import pandas as pd
+
+
+# function for updating data
+def update():
+    global df
+    df = pd.DataFrame(pd.read_csv(f"https://docs.google.com/spreadsheets/d/{sheet_id}/export?format=csv"))
+
 
 # the sheet with the homework
 sheet_id = '1XT36KHawZKJJ3r-W3GHJkOflrQksZ_aUrsxOH8-bwbY'
 
 # primary dataframe
 df = pd.read_csv(f"https://docs.google.com/spreadsheets/d/{sheet_id}/export?format=csv")
-
 
 # dataframe of each day
 dfLuni = df.iloc[:, 0:2]
@@ -24,5 +30,5 @@ hwJoi = dfJoi[dfJoi["Joi"].notna()][:].replace(np.nan, "Nu sunt teme").values.to
 hwVineri = dfVineri[dfVineri["Vineri"].notna()][:].replace(np.nan, "Nu sunt teme").values.tolist()
 
 while True:
-    df.update(pd.read_csv(f"https://docs.google.com/spreadsheets/d/{sheet_id}/export?format=csv"))
-    time.sleep(300)
+    update()
+    time.sleep(500)
