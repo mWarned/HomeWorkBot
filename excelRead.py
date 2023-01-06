@@ -1,3 +1,4 @@
+from datetime import time
 import numpy as np
 import pandas as pd
 
@@ -21,3 +22,7 @@ hwMarti = dfMarti[dfMarti["Marți"].notna()][:].replace(np.nan, "Nu sunt teme").
 hwMiercuri = dfMiercuri[dfMiercuri["Miercuri"].notna()][:].replace(np.nan, "Nu sunt teme").values.tolist()
 hwJoi = dfJoi[dfJoi["Joi"].notna()][:].replace(np.nan, "Nu sunt teme").values.tolist()
 hwVineri = dfVineri[dfVineri["Vineri"].notna()][:].replace(np.nan, "Nu sunt teme").values.tolist()
+
+while True:
+    df.update(pd.read_csv(f"https://docs.google.com/spreadsheets/d/{sheet_id}/export?format=csv"))
+    time.sleep(300)
