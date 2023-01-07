@@ -1,3 +1,22 @@
-  aiogram
-  numpy
-  pandas
+aiogram
+numpy
+pandas
+pip
+pytz
+idna
+multidict
+attrs
+Babel
+setuptools
+pyinstaller
+MarkupSafe
+python-dateutil
+numexpr
+aiohttp
+certifi
+yarl
+aiosignal
+frozenlist
+six
+future
+APScheduler
