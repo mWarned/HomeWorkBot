@@ -1,6 +1,8 @@
 import logging
 from aiogram import Bot, Dispatcher, executor, types
 import datetime
+from apscheduler.schedulers.background import BackgroundScheduler
+import excelRead
 
 # automatic get of the day of week
 dayIndex = datetime.datetime.today().weekday()
@@ -11,6 +13,10 @@ logging.basicConfig(level=logging.INFO)
 # bot init
 bot = Bot(token="5810303748:AAHi32NfjbjfObnFznVj6GH92OLKwNuWea0")
 dp = Dispatcher(bot)
+
+scheduler = BackgroundScheduler()
+scheduler.add_job(excelRead.updatedf, 'interval', seconds=300)
+scheduler.start()
 
 # buttons
 luni = types.KeyboardButton("Luni")
