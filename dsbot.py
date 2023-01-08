@@ -60,4 +60,4 @@ async def hw(message, ctx):
 
 
 # bot running
-bot.run("MTA2MTY1Mzc5NjY1ODM2NDQ4OA.Gz6kyO.-Ibf2pk7KxtSH0nnmtTMeiLeKxtmI4U2FHG0YI")
+bot.run("BOT_TOKEN")
