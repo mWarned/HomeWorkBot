@@ -11,7 +11,7 @@ dayIndex = datetime.datetime.today().weekday()
 logging.basicConfig(level=logging.INFO)
 
 # bot init
-bot = Bot(token="5810303748:AAHi32NfjbjfObnFznVj6GH92OLKwNuWea0")
+bot = Bot(token="TOKEN")
 dp = Dispatcher(bot)
 
 # dataframe update
