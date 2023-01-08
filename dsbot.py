@@ -1,3 +1,4 @@
+import os
 import discord
 from discord.ext import commands
 from apscheduler.schedulers.background import BackgroundScheduler
@@ -61,4 +62,5 @@ async def hw(message, ctx):
 
 
 # bot running
+os.getenv("DSTOKEN")
 bot.run(tokens.DSTOKEN)

@@ -1,3 +1,4 @@
+import os
 import logging
 from aiogram import Bot, Dispatcher, executor, types
 import datetime
@@ -12,6 +13,7 @@ dayIndex = datetime.datetime.today().weekday()
 logging.basicConfig(level=logging.INFO)
 
 # bot init
+token = os.getenv("TGTOKEN")
 bot = Bot(token=tokens.TGTOKEN)
 dp = Dispatcher(bot)
 
