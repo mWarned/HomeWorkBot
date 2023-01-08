@@ -3,19 +3,22 @@ from discord.ext import commands
 from apscheduler.schedulers.background import BackgroundScheduler
 import excelRead
 
-
+# bot init
 bot = commands.Bot(command_prefix="/", intents=discord.Intents.all())
 
+# dataframes update
 scheduler = BackgroundScheduler()
 scheduler.add_job(excelRead.updatedf, 'interval', seconds=300)
 scheduler.start()
 
 
+# notification for bot start
 @bot.event
 async def on_ready():
     print(f"Logged in as {bot.user}")
 
 
+# commands handling
 @bot.command()
 async def hw(message, ctx):
     temele = ""
@@ -55,4 +58,6 @@ async def hw(message, ctx):
 
         await message.send(temele)
 
+
+# bot running
 bot.run("MTA2MTY1Mzc5NjY1ODM2NDQ4OA.Gz6kyO.-Ibf2pk7KxtSH0nnmtTMeiLeKxtmI4U2FHG0YI")
