@@ -3,6 +3,7 @@ from aiogram import Bot, Dispatcher, executor, types
 import datetime
 from apscheduler.schedulers.background import BackgroundScheduler
 import excelRead
+import tokens
 
 # automatic get of the day of week
 dayIndex = datetime.datetime.today().weekday()
@@ -11,7 +12,7 @@ dayIndex = datetime.datetime.today().weekday()
 logging.basicConfig(level=logging.INFO)
 
 # bot init
-bot = Bot(token="5810303748:AAHi32NfjbjfObnFznVj6GH92OLKwNuWea0")
+bot = Bot(token=tokens.TGTOKEN)
 dp = Dispatcher(bot)
 
 # dataframe update

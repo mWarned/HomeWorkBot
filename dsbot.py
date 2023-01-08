@@ -2,6 +2,7 @@ import discord
 from discord.ext import commands
 from apscheduler.schedulers.background import BackgroundScheduler
 import excelRead
+import tokens
 
 # bot init
 bot = commands.Bot(command_prefix="/", intents=discord.Intents.all())
@@ -60,4 +61,4 @@ async def hw(message, ctx):
 
 
 # bot running
-bot.run("MTA2MTY1Mzc5NjY1ODM2NDQ4OA.Gz6kyO.-Ibf2pk7KxtSH0nnmtTMeiLeKxtmI4U2FHG0YI")
+bot.run(tokens.DSTOKEN)
