@@ -20,3 +20,4 @@ frozenlist
 six
 future
 APScheduler
+discord.py
