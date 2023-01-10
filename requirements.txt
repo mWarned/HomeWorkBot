@@ -20,4 +20,5 @@ frozenlist
 six
 future
 APScheduler
+python-dotenv
 discord.py

@@ -1,9 +1,9 @@
 import os
+from dotenv import load_dotenv
 import discord
 from discord.ext import commands
 from apscheduler.schedulers.background import BackgroundScheduler
 import excelRead
-import tokens
 
 # bot init
 bot = commands.Bot(command_prefix="/", intents=discord.Intents.all())
@@ -62,5 +62,5 @@ async def hw(message, ctx):
 
 
 # bot running
-os.getenv("DSTOKEN")
-bot.run(tokens.DSTOKEN)
+load_dotenv()
+bot.run(os.getenv("DSTOKEN"))

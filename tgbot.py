@@ -1,10 +1,10 @@
 import os
+from dotenv import load_dotenv
 import logging
 from aiogram import Bot, Dispatcher, executor, types
 import datetime
 from apscheduler.schedulers.background import BackgroundScheduler
 import excelRead
-import tokens
 
 # automatic get of the day of week
 dayIndex = datetime.datetime.today().weekday()
@@ -13,8 +13,8 @@ dayIndex = datetime.datetime.today().weekday()
 logging.basicConfig(level=logging.INFO)
 
 # bot init
-token = os.getenv("TGTOKEN")
-bot = Bot(token=tokens.TGTOKEN)
+load_dotenv()
+bot = Bot(token=os.getenv("TGTOKEN"))
 dp = Dispatcher(bot)
 
 # dataframe update
