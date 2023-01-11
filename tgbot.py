@@ -6,9 +6,6 @@ import datetime
 from apscheduler.schedulers.background import BackgroundScheduler
 import excelRead
 
-# automatic get of the day of week
-dayIndex = datetime.datetime.today().weekday()
-
 # log level
 logging.basicConfig(level=logging.INFO)
 
@@ -32,7 +29,6 @@ vineri = types.KeyboardButton("Vineri")
 # keyboards
 keyboard1 = types.ReplyKeyboardMarkup(row_width=3, resize_keyboard=True, one_time_keyboard=True)\
     .add(luni, marti, miercuri, joi, vineri)
-keyboard2 = types.InlineKeyboardMarkup(row_width=3)
 
 
 # start message handling
@@ -81,30 +77,36 @@ async def answer_to_user(message: types.Message):
             await message.answer(str(excelRead.hwVineri[i][0]) + ": \n" + str(excelRead.hwVineri[i][1]),
                                  parse_mode="html")
 
+    if message.text == "/next_day":
+        # automatic get of the day of week
+        dayIndex = datetime.datetime.today().weekday()
 
-@dp.message_handler(commands=["next_day"])
-async def hw_next_day(message: types.Message):
-    await message.answer("Temele pentru ziua urmatoare.")
+        await message.answer("Temele pentru ziua urmatoare.", parse_mode="html")
 
-    if dayIndex == 0:
-        for i in range(len(excelRead.hwMarti)):
-            await message.answer(str(excelRead.hwMarti[i][0]) + ": \n" + str(excelRead.hwMarti[i][1]),
-                                 parse_mode="html")
-    elif dayIndex == 1:
-        for i in range(len(excelRead.hwMiercuri)):
-            await message.answer(str(excelRead.hwMiercuri[i][0]) + ": \n" + str(excelRead.hwMiercuri[i][1]),
-                                 parse_mode="html")
-    elif dayIndex == 2:
-        for i in range(len(excelRead.hwJoi)):
-            await message.answer(str(excelRead.hwJoi[i][0]) + ": \n" + str(excelRead.hwJoi[i][1]), parse_mode="html")
-    elif dayIndex == 3:
-        for i in range(len(excelRead.hwVineri)):
-            await message.answer(str(excelRead.hwVineri[i][0]) + ": \n" + str(excelRead.hwVineri[i][1]),
-                                 parse_mode="html")
-    else:
-        for i in range(len(excelRead.hwLuni)):
-            await message.answer(str(excelRead.hwLuni[i][0]) + ": \n" + str(excelRead.hwLuni[i][1]), parse_mode="html")
+        if dayIndex == 0:
+            for i in range(len(excelRead.hwMarti)):
+                await message.answer(str(excelRead.hwMarti[i][0]) + ": \n" + str(excelRead.hwMarti[i][1]),
+                                     parse_mode="html")
+        elif dayIndex == 1:
+            for i in range(len(excelRead.hwMiercuri)):
+                await message.answer(str(excelRead.hwMiercuri[i][0]) + ": \n" + str(excelRead.hwMiercuri[i][1]),
+                                     parse_mode="html")
+        elif dayIndex == 2:
+            for i in range(len(excelRead.hwJoi)):
+                await message.answer(str(excelRead.hwJoi[i][0]) + ": \n" + str(excelRead.hwJoi[i][1]),
+                                     parse_mode="html")
+        elif dayIndex == 3:
+            for i in range(len(excelRead.hwVineri)):
+                await message.answer(str(excelRead.hwVineri[i][0]) + ": \n" + str(excelRead.hwVineri[i][1]),
+                                     parse_mode="html")
+        else:
+            for i in range(len(excelRead.hwLuni)):
+                await message.answer(str(excelRead.hwLuni[i][0]) + ": \n" + str(excelRead.hwLuni[i][1]),
+                                     parse_mode="html")
 
+
+# @dp.message_handler(commands=["next_day"])
+# async def hw_next_day(message: types.Message):
 
 # run long-polling
 if __name__ == "__main__":
