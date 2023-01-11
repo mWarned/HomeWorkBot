@@ -50,6 +50,33 @@ async def welcome_text(message: types.Message):
 async def pop_menu(message: types.Message):
     await message.reply("Temele pe ce zi dorii să aflați?", reply_markup=keyboard1)
 
+@dp.message_handler(commands=["next_day"])
+async def hw_next_day(message: types.Message):
+    # automatic get of the day of week
+    dayIndex = datetime.datetime.today().weekday()
+
+    await message.answer("Temele pentru ziua urmatoare.", parse_mode="html")
+
+    if dayIndex == 0:
+        for i in range(len(excelRead.hwMarti)):
+            await message.answer(str(excelRead.hwMarti[i][0]) + ": \n" + str(excelRead.hwMarti[i][1]),
+                                 parse_mode="html")
+    elif dayIndex == 1:
+        for i in range(len(excelRead.hwMiercuri)):
+            await message.answer(str(excelRead.hwMiercuri[i][0]) + ": \n" + str(excelRead.hwMiercuri[i][1]),
+                                 parse_mode="html")
+    elif dayIndex == 2:
+        for i in range(len(excelRead.hwJoi)):
+            await message.answer(str(excelRead.hwJoi[i][0]) + ": \n" + str(excelRead.hwJoi[i][1]),
+                                 parse_mode="html")
+    elif dayIndex == 3:
+        for i in range(len(excelRead.hwVineri)):
+            await message.answer(str(excelRead.hwVineri[i][0]) + ": \n" + str(excelRead.hwVineri[i][1]),
+                                 parse_mode="html")
+    else:
+        for i in range(len(excelRead.hwLuni)):
+            await message.answer(str(excelRead.hwLuni[i][0]) + ": \n" + str(excelRead.hwLuni[i][1]),
+                                 parse_mode="html")
 
 @dp.message_handler()
 async def answer_to_user(message: types.Message):
@@ -76,37 +103,6 @@ async def answer_to_user(message: types.Message):
         for i in range(len(excelRead.hwVineri)):
             await message.answer(str(excelRead.hwVineri[i][0]) + ": \n" + str(excelRead.hwVineri[i][1]),
                                  parse_mode="html")
-
-    if message.text == "/next_day":
-        # automatic get of the day of week
-        dayIndex = datetime.datetime.today().weekday()
-
-        await message.answer("Temele pentru ziua urmatoare.", parse_mode="html")
-
-        if dayIndex == 0:
-            for i in range(len(excelRead.hwMarti)):
-                await message.answer(str(excelRead.hwMarti[i][0]) + ": \n" + str(excelRead.hwMarti[i][1]),
-                                     parse_mode="html")
-        elif dayIndex == 1:
-            for i in range(len(excelRead.hwMiercuri)):
-                await message.answer(str(excelRead.hwMiercuri[i][0]) + ": \n" + str(excelRead.hwMiercuri[i][1]),
-                                     parse_mode="html")
-        elif dayIndex == 2:
-            for i in range(len(excelRead.hwJoi)):
-                await message.answer(str(excelRead.hwJoi[i][0]) + ": \n" + str(excelRead.hwJoi[i][1]),
-                                     parse_mode="html")
-        elif dayIndex == 3:
-            for i in range(len(excelRead.hwVineri)):
-                await message.answer(str(excelRead.hwVineri[i][0]) + ": \n" + str(excelRead.hwVineri[i][1]),
-                                     parse_mode="html")
-        else:
-            for i in range(len(excelRead.hwLuni)):
-                await message.answer(str(excelRead.hwLuni[i][0]) + ": \n" + str(excelRead.hwLuni[i][1]),
-                                     parse_mode="html")
-
-
-# @dp.message_handler(commands=["next_day"])
-# async def hw_next_day(message: types.Message):
 
 # run long-polling
 if __name__ == "__main__":
