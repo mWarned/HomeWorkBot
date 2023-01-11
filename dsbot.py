@@ -64,7 +64,7 @@ async def hw(message, ctx):
 
 # commands handling
 @bot.command()
-async def nextDay4(message):
+async def nextDay(message):
     # automatic get of the day of week
     dayIndex = datetime.datetime.today().weekday()
 
