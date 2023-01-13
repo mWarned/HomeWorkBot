@@ -23,29 +23,30 @@ async def on_ready():
 
 # command for homework for the next day
 @bot.command()
-async def nextDay(message):
+async def hwnext(message):
     # automatic get of the day of week
     dayIndex = datetime.datetime.today().weekday()
 
-    temele = ""
+    temelend = ""
 
     if dayIndex == 0:
         for i in range(len(excelRead.hwMarti)):
-            temele += str(excelRead.hwMarti[i][0]) + ": \n" + str(excelRead.hwMarti[i][1]) + "\n\n"
+            temelend += str(excelRead.hwMarti[i][0]) + ": \n" + str(excelRead.hwMarti[i][1]) + "\n\n"
     elif dayIndex == 1:
         for i in range(len(excelRead.hwMiercuri)):
-            temele += str(excelRead.hwMiercuri[i][0]) + ": \n" + str(excelRead.hwMiercuri[i][1]) + "\n\n"
+            temelend += str(excelRead.hwMiercuri[i][0]) + ": \n" + str(excelRead.hwMiercuri[i][1]) + "\n\n"
     elif dayIndex == 2:
         for i in range(len(excelRead.hwJoi)):
-            temele += str(excelRead.hwJoi[i][0]) + ": \n" + str(excelRead.hwJoi[i][1]) + "\n\n"
+            temelend += str(excelRead.hwJoi[i][0]) + ": \n" + str(excelRead.hwJoi[i][1]) + "\n\n"
     elif dayIndex == 3:
         for i in range(len(excelRead.hwVineri)):
-            temele += str(excelRead.hwVineri[i][0]) + ": \n" + str(excelRead.hwVineri[i][1]) + "\n\n"
+            temelend += str(excelRead.hwVineri[i][0]) + ": \n" + str(excelRead.hwVineri[i][1]) + "\n\n"
     else:
         for i in range(len(excelRead.hwLuni)):
-            temele += str(excelRead.hwLuni[i][0]) + ": \n" + str(excelRead.hwLuni[i][1]) + "\n\n"
+            temelend += str(excelRead.hwLuni[i][0]) + ": \n" + str(excelRead.hwLuni[i][1]) + "\n\n"
 
-    await message.send("Temele pentru ziua de miine:\n" + temele)
+    await message.send("Temele pentru ziua de miine:\n" + temelend)
+
 
 # command for the homework for a specified day
 @bot.command()
